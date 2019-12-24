@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<head> 
+      <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+	  
+	  <script>
+		document.getElementById("btnPrint").onclick = function () {
+		printElement(document.getElementById("printThis"));
+		}
+
+		function printElement(elem) {
+			var domClone = elem.cloneNode(true);
+    
+			var $printSection = document.getElementById("printSection");
+    
+		if (!$printSection) {
+        var $printSection = document.createElement("div");
+        $printSection.id = "printSection";
+        document.body.appendChild($printSection);
+		}
+    
+		$printSection.innerHTML = "";
+		$printSection.appendChild(domClone);
+		window.print();
+}
+
+	  </script>
+	  <style type="text/css" media="print">
+		@media screen {
+			#printSection {
+				display: none;
+			}
+		}
+	
+		@media print {
+			body * {
+				visibility:hidden;
+			}
+			#printSection, #printSection * {
+				visibility:visible;
+			}
+			#printSection {
+				position:absolute;
+				left:0;
+				top:0;
+			}
+		}
+    </style>
+</head>
+<body>
+
+<!---------------------->
+<div class="wrap">
+	<h1>Transaction Receipt Snippet</h1>
+	<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#MyModal" >
+    Print Receipt
+	</button>
+</div>
+<div id="printSection">
+	<div id="MyModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  
+		<div class="modal-dialog modal-lg">
+    
+		<!-- Modal Content: begins -->
+			<div class="modal-content">
+      
+			<!-- Modal Header -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="gridSystemModalLabel"><p class="text-left">ACCION MFB DEPOSIT SLIP</p></h4>
+				</div>
+    
+			<!-- Modal Body -->  
+				<div class="modal-body">
+					<div class="body-message">
+					<div class="text-left">
+						<h4 > ----- TRANSACTION RECEIPT -----</h4>
+						<p>Account Number: </p>
+						<p>Account Name: </p>
+						<p>Transaction ID: </p>
+						<p>Transaction Details: </p>
+						<p>Amount Deposited: </p>
+						<p class="small"> <strong>DISCLAIMER: </strong></br>
+						THE BANK WILL NOT ACCEPT ANY LIABILITY FOR CLAIM OF DEPOSIT </br>
+							OR AN AMOUNT DIFFERENT FROM WHAT IS CONTAINED ON THIS RECIEPT.</br>
+							KINDLY CONTACT US ON 10-2719385/6 FOR ANY ENQUIRY.
+						</p>
+					
+					</div>
+					
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger btn-sm" data-dismiss="modal" aria-hidden="true">Close</button>
+				<input id="btnPrint" type="button" value="Print" class="btn btn-success btn-sm" onclick="window.print()" />
+			</div>
+    
+		</div>
+		
+		<!-- Modal Content: ends -->
+
+
+	</div>
+	
+</div>
+</body>
+</html>
